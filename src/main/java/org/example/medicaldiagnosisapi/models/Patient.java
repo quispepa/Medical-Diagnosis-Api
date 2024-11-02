@@ -31,6 +31,7 @@ public class Patient {
   private PatientBiologicalSex patientBiologicalSex;
 
   @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
+  @JsonManagedReference
   private MedicalRecord medicalRecord;
   @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JsonManagedReference

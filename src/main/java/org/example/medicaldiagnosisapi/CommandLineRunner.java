@@ -28,7 +28,6 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
 
   @Override
   public void run(String... args) throws Exception {
-    
   }
 
   /**
@@ -67,16 +66,16 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
     Doctor doctor6 = new Doctor("Alba Farelo", DoctorSpecialty.PSYCHIATRY);
     doctorRepository.saveAll(Arrays.asList(doctor, doctor1, doctor2, doctor3, doctor4, doctor5, doctor6));
 
-    Appointment appointment = new Appointment(LocalDateTime.of(2024, 10, 1, 16, 40), AppointmentType.WITH_DOCTOR, AppointmentStatus.SCHEDULED, patient, doctor);
-    Appointment appointment1 = new Appointment(LocalDateTime.of(2020, 11, 15, 12, 10), AppointmentType.WITH_DOCTOR, AppointmentStatus.SCHEDULED, patient, doctor);
-    Appointment appointment2 = new Appointment(LocalDateTime.of(2020, 1, 10, 13, 25), AppointmentType.WITH_DOCTOR, AppointmentStatus.SCHEDULED, patient, doctor);
-    Appointment appointment3 = new Appointment(LocalDateTime.of(2024, 4, 1, 17, 30), AppointmentType.WITH_DOCTOR, AppointmentStatus.SCHEDULED, patient, doctor);
-    Appointment appointment4 = new Appointment(LocalDateTime.of(2023, 8, 25, 12, 45), AppointmentType.WITH_DOCTOR, AppointmentStatus.SCHEDULED, patient, doctor);
-    Appointment appointment5 = new Appointment(LocalDateTime.of(2024, 5, 18, 11, 15), AppointmentType.TO_MEDICAL_TEST, AppointmentStatus.SCHEDULED, patient, doctor);
-    Appointment appointment6 = new Appointment(LocalDateTime.of(2023, 3, 19, 10, 20), AppointmentType.TO_MEDICAL_TEST, AppointmentStatus.SCHEDULED, patient, doctor);
-    Appointment appointment7 = new Appointment(LocalDateTime.of(2023, 12, 11, 15, 30), AppointmentType.TO_MEDICAL_TEST, AppointmentStatus.SCHEDULED, patient, doctor);
-    Appointment appointment8 = new Appointment(LocalDateTime.of(2022, 7, 8, 18, 35), AppointmentType.TO_MEDICAL_TEST, AppointmentStatus.SCHEDULED, patient, doctor);
-    Appointment appointment9 = new Appointment(LocalDateTime.of(2023, 10, 23, 19, 55), AppointmentType.TO_MEDICAL_TEST, AppointmentStatus.SCHEDULED, patient, doctor);
+    Appointment appointment = new Appointment(LocalDateTime.of(2024, 10, 1, 16, 40), AppointmentType.WITH_DOCTOR, AppointmentStatus.SCHEDULED, patient, doctor5);
+    Appointment appointment1 = new Appointment(LocalDateTime.of(2020, 11, 15, 12, 10), AppointmentType.WITH_DOCTOR, AppointmentStatus.SCHEDULED, patient2, doctor4);
+    Appointment appointment2 = new Appointment(LocalDateTime.of(2020, 1, 10, 13, 25), AppointmentType.WITH_DOCTOR, AppointmentStatus.SCHEDULED, patient3, doctor1);
+    Appointment appointment3 = new Appointment(LocalDateTime.of(2024, 4, 1, 17, 30), AppointmentType.WITH_DOCTOR, AppointmentStatus.SCHEDULED, patient2, doctor3);
+    Appointment appointment4 = new Appointment(LocalDateTime.of(2023, 8, 25, 12, 45), AppointmentType.WITH_DOCTOR, AppointmentStatus.SCHEDULED, patient1, doctor3);
+    Appointment appointment5 = new Appointment(LocalDateTime.of(2024, 5, 18, 11, 15), AppointmentType.TO_MEDICAL_TEST, AppointmentStatus.SCHEDULED, patient6, doctor2);
+    Appointment appointment6 = new Appointment(LocalDateTime.of(2023, 3, 19, 10, 20), AppointmentType.TO_MEDICAL_TEST, AppointmentStatus.SCHEDULED, patient5, doctor);
+    Appointment appointment7 = new Appointment(LocalDateTime.of(2023, 12, 11, 15, 30), AppointmentType.TO_MEDICAL_TEST, AppointmentStatus.SCHEDULED, patient4, doctor6);
+    Appointment appointment8 = new Appointment(LocalDateTime.of(2022, 7, 8, 18, 35), AppointmentType.TO_MEDICAL_TEST, AppointmentStatus.SCHEDULED, patient5, doctor);
+    Appointment appointment9 = new Appointment(LocalDateTime.of(2023, 10, 23, 19, 55), AppointmentType.TO_MEDICAL_TEST, AppointmentStatus.SCHEDULED, patient3, doctor4);
     appointmentRepository.saveAll(Arrays.asList(appointment, appointment1, appointment2, appointment3, appointment4, appointment5, appointment6, appointment7, appointment8, appointment9));
 
     Diagnosis diagnosis = new Diagnosis(null, null, null, null, null, null, DiagnosisTreatmentStatus.PENDING_TEST_RESULTS);

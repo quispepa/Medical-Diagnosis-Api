@@ -31,6 +31,7 @@ public class MedicalTest {
 
   @OneToOne
   @JoinColumn(name = "appointment_id", referencedColumnName = "appointment_id")
+  @JsonBackReference
   private Appointment appointment;
   @ManyToOne
   @JsonBackReference
