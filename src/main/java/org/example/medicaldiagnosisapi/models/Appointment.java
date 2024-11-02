@@ -1,6 +1,7 @@
 package org.example.medicaldiagnosisapi.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.medicaldiagnosisapi.enums.AppointmentStatus;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 public class Appointment {
   @Id
   @Column(name = "appointment_id")
@@ -38,8 +40,10 @@ public class Appointment {
   private Doctor doctor;
 
   @OneToOne(mappedBy = "appointment", cascade = CascadeType.ALL)
+  @JsonManagedReference
   private Diagnosis diagnosis;
   @OneToOne(mappedBy = "appointment", cascade = CascadeType.ALL)
+  @JsonManagedReference
   private MedicalTest medicalTest;
 
 

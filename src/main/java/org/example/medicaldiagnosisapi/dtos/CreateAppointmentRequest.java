@@ -1,10 +1,12 @@
 package org.example.medicaldiagnosisapi.dtos;
 
+
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.example.medicaldiagnosisapi.enums.AppointmentStatus;
 import org.example.medicaldiagnosisapi.enums.AppointmentType;
-import org.example.medicaldiagnosisapi.models.Doctor;
-import org.example.medicaldiagnosisapi.models.Patient;
 
 import java.time.LocalDateTime;
 @Getter
@@ -12,10 +14,16 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AppointmentResponse {
+public class CreateAppointmentRequest {
+  @NotNull
+  @FutureOrPresent
   private LocalDateTime appointmentDateAndTime;
+  @NotNull
   private AppointmentType appointmentType;
+  @NotNull
   private AppointmentStatus appointmentStatus;
+  @NotNull
   private Long patientId;
+  @NotNull
   private Long doctorId;
 }

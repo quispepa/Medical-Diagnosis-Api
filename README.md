@@ -1,4 +1,19 @@
 
+# About entitys
+
+## Appointment
+
+- Create - To create new Appointment its necessary to have a Patient and Doctor created first.
+- Read - To read an Appointment is neccesary introduced id param to get the Appoinment. To read all Appointments is only neccesary call method.
+- Update - To update an Appointment it can only change the date and time of an Appointment, then appointmentStatus will change to "Rescheduled".
+
+## Patient
+
+- Create - To create new Patient its necessary to have a MedicalRecord created first
+- Read - To read an Patient is neccesary introduced id param to get the Patient. To read all Patients is only neccesary call method.
+- Update - To update an Patient it can only change the biological sex of an Appointment and day of birth.
+    - To update name is neccesary to have admin role.
+
 ---
 
 ### Correct Creation of a `Patient` and its `MedicalRecord`

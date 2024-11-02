@@ -1,5 +1,6 @@
 package org.example.medicaldiagnosisapi.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ public class MedicalRecord {
   @OneToOne
   @MapsId
   @JoinColumn(name = "medical_record_id")
+  @JsonBackReference
   private Patient patient;
 
   @OneToMany(mappedBy = "medicalRecord",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
