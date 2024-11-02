@@ -25,5 +25,3 @@ patientRepository.save(patient);
 > **Reason:** This approach ensures that the `MedicalRecord` is created and saved along with the `Patient` in a single transaction, avoiding detached entity errors.
 
 ---
-
-This section provides a clear explanation of the implementation and reason behind this setup for your project documentation.
