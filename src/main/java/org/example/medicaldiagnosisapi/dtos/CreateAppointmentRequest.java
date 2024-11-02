@@ -1,9 +1,6 @@
 package org.example.medicaldiagnosisapi.dtos;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -15,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CreateMedicalTestAppointmentRequest {
+public class CreateAppointmentRequest {
   @NotNull
   @FutureOrPresent
   private LocalDateTime appointmentDateAndTime;
@@ -31,10 +28,7 @@ public class CreateMedicalTestAppointmentRequest {
   /**
    * Result of medicalTest
    */
-  private String result;
-  @NotNull
   private MedicalTestType medicalTestType;
-  @NotNull
-  private MedicalTestStatus medicalTestStatus;
+
 
 }

@@ -62,4 +62,8 @@ public class Diagnosis {
     this.diagnosisObservations = diagnosisObservations;
     this.diagnosisTreatmentStatus = diagnosisTreatmentStatus;
   }
+
+  public Diagnosis(DiagnosisTreatmentStatus diagnosisTreatmentStatus) {
+    this.diagnosisTreatmentStatus = diagnosisTreatmentStatus;
+  }
 }

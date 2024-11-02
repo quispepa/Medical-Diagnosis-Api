@@ -1,2 +1,4 @@
-package org.example.medicaldiagnosisapi.dtos;public class CreateDoctorAppointmentRequest {
+package org.example.medicaldiagnosisapi.dtos;
+
+public class CreateDoctorAppointmentRequest {
 }

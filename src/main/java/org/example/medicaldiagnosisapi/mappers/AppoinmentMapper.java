@@ -4,7 +4,6 @@ import jakarta.annotation.PostConstruct;
 import org.example.medicaldiagnosisapi.dtos.AppointmentResponse;
 import org.example.medicaldiagnosisapi.dtos.CreateAppointmentRequest;
 import org.example.medicaldiagnosisapi.models.Appointment;
-import org.example.medicaldiagnosisapi.models.Patient;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;

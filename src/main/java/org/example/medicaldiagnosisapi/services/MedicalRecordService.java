@@ -16,11 +16,16 @@ public class MedicalRecordService {
   public MedicalRecordService(MedicalRedordRepository medicalRedordRepository) {
     this.medicalRedordRepository = medicalRedordRepository;
   }
+  //Only services
+  public Optional<MedicalRecord> getMedicalRecordEntityById(Long id){
+    return medicalRedordRepository.findById(id);
+  }
 
   /**
-   * Method only use between services
-   * @param newPatient
-   * @return
+   * Method only use between services.
+   * Returns a MedicalRecord entity that's necessary to create new Patient, then this MedicalRecord will save by Patient repository of recursive way.
+   * @param newPatient Patient entity that is necessary to create MedicalRecord cause ids are equals
+   * @return A MedicalRecord entity to add on creation of new Patient.
    */
   public MedicalRecord getNewMedicalRecordEntityOfNewPatient(Patient newPatient) {
     return new MedicalRecord(newPatient);
