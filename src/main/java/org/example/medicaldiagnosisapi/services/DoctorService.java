@@ -1,10 +1,8 @@
 package org.example.medicaldiagnosisapi.services;
 
-import org.example.medicaldiagnosisapi.dtos.DoctorResponse;
 import org.example.medicaldiagnosisapi.mappers.DoctorMapper;
 import org.example.medicaldiagnosisapi.models.Doctor;
 import org.example.medicaldiagnosisapi.repositories.DoctorRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +24,7 @@ public class DoctorService {
    * @param id doctorId to search in repository
    * @return Optional<Doctor> An optional that can content entity object
    */
-  public Optional<Doctor> getDoctor(Long id){
+  public Optional<Doctor> getDoctorEntity(Long id){
     return doctorRepository.findById(id);
   }
 }

@@ -35,4 +35,5 @@ public class AppointmentController {
     Optional<AppointmentResponse> appointmentResponse = appointmentService.updateAppointmentDateAndTime(id, updateAppointmentDateAndTimeRequest);
     return appointmentResponse.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
   }
+
 }

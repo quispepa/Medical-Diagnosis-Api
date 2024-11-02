@@ -1,18 +1,21 @@
 package org.example.medicaldiagnosisapi.dtos;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.example.medicaldiagnosisapi.enums.PatientBiologicalSex;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class PatientResponse {
-  private String patientName;
+@Setter
+@Getter
+public class UpdatePatientRequest {
+  @Past
   private LocalDate patientDayOfBirth;
   private PatientBiologicalSex patientBiologicalSex;
 }

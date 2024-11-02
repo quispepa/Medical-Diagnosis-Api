@@ -16,8 +16,12 @@ import java.util.stream.Collectors;
 @Component
 public class AppoinmentMapper {
 
+  private final ModelMapper modelMapper;
+
   @Autowired
-  private ModelMapper modelMapper;
+  public AppoinmentMapper(ModelMapper modelMapper) {
+    this.modelMapper = modelMapper;
+  }
 
   public AppointmentResponse getAppointmentResponseFromAppointment(Appointment appointment){
     return modelMapper.map(appointment,AppointmentResponse.class);

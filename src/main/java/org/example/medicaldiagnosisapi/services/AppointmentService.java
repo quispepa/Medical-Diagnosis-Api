@@ -5,8 +5,6 @@ import org.example.medicaldiagnosisapi.dtos.CreateAppointmentRequest;
 import org.example.medicaldiagnosisapi.dtos.UpdateAppointmentDateAndTimeRequest;
 import org.example.medicaldiagnosisapi.enums.AppointmentStatus;
 import org.example.medicaldiagnosisapi.mappers.AppoinmentMapper;
-import org.example.medicaldiagnosisapi.mappers.DoctorMapper;
-import org.example.medicaldiagnosisapi.mappers.PatientMapper;
 import org.example.medicaldiagnosisapi.models.Appointment;
 import org.example.medicaldiagnosisapi.models.Doctor;
 import org.example.medicaldiagnosisapi.models.Patient;
@@ -23,18 +21,14 @@ public class AppointmentService {
   private final AppointmentRepository appointmentRepository;
   private final DoctorService doctorService;
   private final PatientService patientService;
-  private final PatientMapper patientMapper;
   private final AppoinmentMapper appoinmentMapper;
-  private final DoctorMapper doctorMapper;
 
   @Autowired
-  public AppointmentService(AppointmentRepository appointmentRepository, AppoinmentMapper appoinmentMapper, DoctorService doctorService, PatientService patientService, PatientMapper patientMapper, DoctorMapper doctorMapper) {
+  public AppointmentService(AppointmentRepository appointmentRepository, AppoinmentMapper appoinmentMapper, DoctorService doctorService, PatientService patientService) {
     this.appointmentRepository = appointmentRepository;
     this.appoinmentMapper = appoinmentMapper;
     this.doctorService = doctorService;
     this.patientService = patientService;
-    this.patientMapper = patientMapper;
-    this.doctorMapper = doctorMapper;
   }
 
   public Optional<AppointmentResponse> getAppointment(Long id) {
@@ -48,8 +42,8 @@ public class AppointmentService {
 
   public Optional<AppointmentResponse> createAppointment(CreateAppointmentRequest createAppointmentResquest) {
     Appointment newAppointment = appoinmentMapper.getAppointmentFromCreateAppointmentRequest(createAppointmentResquest);
-    Patient patientFound = patientService.getPatient(createAppointmentResquest.getPatientId()).orElse(null);
-    Doctor doctorFound = doctorService.getDoctor(createAppointmentResquest.getDoctorId()).orElse(null);
+    Patient patientFound = patientService.getPatientEntity(createAppointmentResquest.getPatientId()).orElse(null);
+    Doctor doctorFound = doctorService.getDoctorEntity(createAppointmentResquest.getDoctorId()).orElse(null);
     if (patientFound == null || doctorFound == null) {
       return Optional.empty();
     } else {
