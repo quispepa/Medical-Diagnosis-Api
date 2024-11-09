@@ -99,6 +99,8 @@ Each controller utilizes dedicated services and data repositories to facilitate 
 - **MySQL Documentation:** [https://dev.mysql.com/doc/](https://dev.mysql.com/doc/)
 - **Postman Documentation:** [https://www.postman.com/](https://www.postman.com/)
 - **Spring Security Guide:** [https://spring.io/guides/topicals/spring-security-architecture](https://spring.io/guides/topicals/spring-security-architecture)
+- **Trello:** [https://trello.com/u/antonioquispe1]
+- **Google Slides** [https://docs.google.com/presentation/d/16cmouXdsAI_8RjKVkiVbCsBsnSkwYbn859gs9CLTMQ0/edit?usp=sharing]
 
 ## Team Members
 
