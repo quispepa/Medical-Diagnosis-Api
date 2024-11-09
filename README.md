@@ -1,5 +1,112 @@
+# Medical Diagnosis API
 
-# About entitys
+The **Medical Diagnosis API** is a comprehensive application designed to manage medical appointments, test analyses, and medical diagnoses. Spearheaded by Antonio Quispe, this project focuses on integrating artificial intelligence to enhance medical diagnostics and streamline the management of patient medical records.
+
+## DER - Data-modeling
+
+Inside the resources directory is the class diagram and data modeling
+
+## Configuration
+
+To run this API, ensure you meet the following prerequisites:
+
+### Prerequisites
+
+- **Java Development Kit (JDK) 17 or higher**
+- **Maven** for dependency management and build processes
+- **MySQL** or any database compatible with Spring Boot JPA
+- **Postman** (optional, for API route testing)
+
+### Database Setup
+
+1. Create a database in MySQL named `ia_diagnosis_db`.
+2. Configure the connection properties in the `application.properties` or `application.yml` file as follows:
+
+   ```yaml
+   spring.datasource.url=jdbc:mysql://localhost:3306/ia_diagnosis_db
+   spring.datasource.username=your_username
+   spring.datasource.password=your_password
+   spring.jpa.hibernate.ddl-auto=update
+   spring.jpa.show-sql=true
+   ```
+
+3. **Authentication:** Spring Security has been implemented for authentication. Ensure you configure appropriate roles and users in the `application.properties` file for testing or production environments.
+
+### Execution
+
+Compile and run the application with the following command in the project's root directory:
+
+```bash
+mvn spring-boot:run
+```
+
+## Technologies Used
+
+- **Java 17**
+- **Spring Boot** (including Web, JPA, and Security modules)
+- **Hibernate** for Object-Relational Mapping (ORM)
+- **MySQL** as the primary database
+- **Spring Security** for authentication and authorization
+- **Postman** (recommended for API testing)
+- **ModelMapper** for entity and DTO conversion
+- **Maven** for dependency management
+
+## Controller Structure and Routes
+
+The controller structure is organized by main entities, each with its corresponding routes. Below is the general structure and examples of routes:
+
+### Controllers and Routes
+
+- **PatientController**
+  - `GET /patients`: Retrieve all patients
+  - `POST /patients`: Create a new patient
+  - `GET /patients/{id}`: Retrieve details of a patient by ID
+
+- **DoctorController**
+  - `GET /doctors`: Retrieve all doctors
+  - `POST /doctors`: Create a new doctor
+  - `GET /doctors/{id}`: Retrieve details of a doctor by ID
+
+- **AppointmentController**
+  - `GET /appointments`: Retrieve all appointments
+  - `POST /appointments`: Create a new appointment
+  - `PUT /appointments/{id}`: Update an appointment by ID
+  - `DELETE /appointments/{id}`: Delete an appointment by ID
+
+- **MedicalTestController**
+  - `GET /medical-tests`: Retrieve all medical tests
+  - `POST /medical-tests`: Create a new medical test
+  - `GET /medical-tests/{id}`: Retrieve details of a medical test by ID
+
+- **DiagnosisController**
+  - `GET /diagnoses`: Retrieve all diagnoses
+  - `POST /diagnoses`: Create a new diagnosis
+  - `GET /diagnoses/{id}`: Retrieve details of a diagnosis by ID
+
+Each controller utilizes dedicated services and data repositories to facilitate scalability and maintainability of the codebase.
+
+## Future Work
+
+1. **AI Integration in Diagnostics:** Integrate an artificial intelligence engine to enhance the accuracy of medical diagnoses based on test results.
+2. **Detailed Medical History:** Expand each patient's medical history to include comprehensive and detailed records.
+3. **Advanced Authentication and Authorization:** Extend Spring Security configuration to support entity-level roles and permissions.
+4. **Frontend Integration:** Develop a reactive frontend for real-time access and management of the API.
+5. **Documentation and Automated Testing:** Create documentation using Swagger and implement unit and integration tests.
+
+## Resources
+
+- **Spring Boot Documentation:** [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot)
+- **MySQL Documentation:** [https://dev.mysql.com/doc/](https://dev.mysql.com/doc/)
+- **Postman Documentation:** [https://www.postman.com/](https://www.postman.com/)
+- **Spring Security Guide:** [https://spring.io/guides/topicals/spring-security-architecture](https://spring.io/guides/topicals/spring-security-architecture)
+
+## Team Members
+
+- **Antonio Quispe** - Lead Developer and Project Owner
+
+---
+
+# About routes
 
 ## Appointment
 
@@ -29,32 +136,5 @@
 
 - Read - To read an specific MedicalTest is necessary MedicalTestId, and it can only read MedicalTest result and type if medicalTestStatus is RESULT_AVAIBLE.
 - Update - To update a MedicalTest it can only add resultTest, when this varible is changed medicalTestStatus will set on RESULT_AVAIBLE
-
----
-
-
-
-### Correct Creation of a `Patient` and its `MedicalRecord`
-
-To create and save a `Patient` along with its related `MedicalRecord` in a `OneToOne` relationship, follow these steps:
-
-1. Instantiate a `Patient`, setting basic data like name, birth date, and biological sex.
-2. Instantiate a `MedicalRecord`.
-3. Set up the bidirectional relationship between `Patient` and `MedicalRecord`:
-    - Use `medicalRecord.setPatient(patient);` to assign the `Patient` to the `MedicalRecord`.
-    - Use `patient.setMedicalRecord(medicalRecord);` to assign the `MedicalRecord` to the `Patient`.
-4. Save the `Patient` using `patientRepository.save(patient);`. This will ensure that the `MedicalRecord` is also saved automatically due to the `CascadeType.ALL` configuration.
-
-**Example:**
-
-```java
-Patient patient = new Patient("Jhon", LocalDate.of(1999, 9, 9), PatientBiologicalSex.MALE);
-MedicalRecord medicalRecord = new MedicalRecord();
-medicalRecord.setPatient(patient);
-patient.setMedicalRecord(medicalRecord);
-patientRepository.save(patient);
-```
-
-> **Reason:** This approach ensures that the `MedicalRecord` is created and saved along with the `Patient` in a single transaction, avoiding detached entity errors.
 
 ---

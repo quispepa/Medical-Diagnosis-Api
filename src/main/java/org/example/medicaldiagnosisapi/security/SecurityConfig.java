@@ -90,8 +90,7 @@ public class SecurityConfig {
                 .requestMatchers(POST, "/api/roles").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(POST, "/api/roles/add-to-user").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(PATCH, "/api/patient").hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(DELETE, "/api/appointment/delete/").hasAnyAuthority("ROLE_ADMIN")
-
+                .requestMatchers(DELETE, "/api/appointment/delete/**").hasAnyAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()); // any other endpoints require authentication
 
         // add the custom authentication filter to the http security object
