@@ -1,12 +1,10 @@
-package org.example.medicaldiagnosisapi.dtos;
+package org.example.medicaldiagnosisapi.dtos.requests;
 
 
 import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.example.medicaldiagnosisapi.enums.AppointmentStatus;
-import org.example.medicaldiagnosisapi.enums.AppointmentType;
+import org.example.medicaldiagnosisapi.enums.*;
 
 import java.time.LocalDateTime;
 @Getter
@@ -26,4 +24,11 @@ public class CreateAppointmentRequest {
   private Long patientId;
   @NotNull
   private Long doctorId;
+
+  /**
+   * Result of medicalTest
+   */
+  private MedicalTestType medicalTestType;
+
+
 }

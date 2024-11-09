@@ -28,10 +28,11 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
 
   @Override
   public void run(String... args) throws Exception {
+    initData();
   }
 
   /**
-   * Correct way of add data persist related entities correctly
+   * Way of add data persist related entities correctly
    */
   public void initData() {
     Patient patient = new Patient("Antonio Quispe", LocalDate.of(2000, 7, 30), PatientBiologicalSex.MALE);
@@ -111,7 +112,7 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
     diagnosisRepository.saveAll(Arrays.asList(diagnosis, diagnosis1, diagnosis2, diagnosis3, diagnosis4, diagnosis5, diagnosis6, diagnosis7, diagnosis8, diagnosis9));
 
     MedicalTest medicalTest = new MedicalTest(null, MedicalTestType.BLOOD_TEST, MedicalTestStatus.SCHEDULED);
-    MedicalTest medicalTest1 = new MedicalTest(null, MedicalTestType.URINE_TEST, MedicalTestStatus.RESULT_AVAIBLE);
+    MedicalTest medicalTest1 = new MedicalTest(null, MedicalTestType.URINE_TEST, MedicalTestStatus.RESULT_AVAILABLE);
     MedicalTest medicalTest2 = new MedicalTest(null, MedicalTestType.XRAY, MedicalTestStatus.UNDER_ANALYSIS);
     MedicalTest medicalTest3 = new MedicalTest(null, MedicalTestType.COLONOSCOPY, MedicalTestStatus.SCHEDULED);
     MedicalTest medicalTest4 = new MedicalTest(null, MedicalTestType.ULTRASOUND, MedicalTestStatus.UNDER_ANALYSIS);

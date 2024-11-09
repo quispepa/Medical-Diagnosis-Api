@@ -1,6 +1,5 @@
 package org.example.medicaldiagnosisapi.dtos;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdatePatientNameRequest {
-  @NotBlank
-  private String patientName;
+public class LoginRequest {
+
+    private String username;
+
+    private String password;
 }

@@ -1,13 +1,12 @@
 package org.example.medicaldiagnosisapi.controllers;
 
 import jakarta.validation.Valid;
-import org.example.medicaldiagnosisapi.dtos.CreatePatientRequest;
-import org.example.medicaldiagnosisapi.dtos.PatientResponse;
-import org.example.medicaldiagnosisapi.dtos.UpdatePatientNameRequest;
-import org.example.medicaldiagnosisapi.dtos.UpdatePatientRequest;
+import org.example.medicaldiagnosisapi.dtos.requests.CreatePatientRequest;
+import org.example.medicaldiagnosisapi.dtos.responses.PatientResponse;
+import org.example.medicaldiagnosisapi.dtos.requests.UpdatePatientNameRequest;
+import org.example.medicaldiagnosisapi.dtos.requests.UpdatePatientRequest;
 import org.example.medicaldiagnosisapi.services.PatientService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +27,7 @@ public class PatientController {
     List<PatientResponse> patientResponseList = patientService.getAllPaitents();
     return patientResponseList.isEmpty()?ResponseEntity.noContent().build():ResponseEntity.ok(patientResponseList);
   }
+
   @GetMapping("/{id}")
   public ResponseEntity<PatientResponse> getAllPatients(@PathVariable Long id){
     Optional<PatientResponse> patientResponseOptional = patientService.getPatient(id);

@@ -1,9 +1,9 @@
 package org.example.medicaldiagnosisapi.services;
 
-import org.example.medicaldiagnosisapi.dtos.CreatePatientRequest;
-import org.example.medicaldiagnosisapi.dtos.PatientResponse;
-import org.example.medicaldiagnosisapi.dtos.UpdatePatientNameRequest;
-import org.example.medicaldiagnosisapi.dtos.UpdatePatientRequest;
+import org.example.medicaldiagnosisapi.dtos.requests.CreatePatientRequest;
+import org.example.medicaldiagnosisapi.dtos.responses.PatientResponse;
+import org.example.medicaldiagnosisapi.dtos.requests.UpdatePatientNameRequest;
+import org.example.medicaldiagnosisapi.dtos.requests.UpdatePatientRequest;
 import org.example.medicaldiagnosisapi.mappers.PatientMapper;
 import org.example.medicaldiagnosisapi.models.MedicalRecord;
 import org.example.medicaldiagnosisapi.models.Patient;

@@ -1,6 +1,5 @@
-package org.example.medicaldiagnosisapi.dtos;
+package org.example.medicaldiagnosisapi.dtos.requests;
 
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

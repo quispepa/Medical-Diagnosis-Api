@@ -1,7 +1,7 @@
 package org.example.medicaldiagnosisapi.mappers;
 
-import org.example.medicaldiagnosisapi.dtos.CreateDoctorRequest;
-import org.example.medicaldiagnosisapi.dtos.DoctorResponse;
+import org.example.medicaldiagnosisapi.dtos.requests.CreateDoctorRequest;
+import org.example.medicaldiagnosisapi.dtos.responses.DoctorResponse;
 import org.example.medicaldiagnosisapi.models.Doctor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
