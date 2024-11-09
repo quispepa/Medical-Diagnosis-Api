@@ -1,10 +1,8 @@
-package org.example.medicaldiagnosisapi.dtos;
+package org.example.medicaldiagnosisapi.dtos.responses;
 
 import lombok.*;
 import org.example.medicaldiagnosisapi.enums.AppointmentStatus;
 import org.example.medicaldiagnosisapi.enums.AppointmentType;
-import org.example.medicaldiagnosisapi.models.Doctor;
-import org.example.medicaldiagnosisapi.models.Patient;
 
 import java.time.LocalDateTime;
 @Getter

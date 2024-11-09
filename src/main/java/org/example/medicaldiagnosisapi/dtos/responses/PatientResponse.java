@@ -1,6 +1,5 @@
-package org.example.medicaldiagnosisapi.dtos;
+package org.example.medicaldiagnosisapi.dtos.responses;
 
-import jakarta.persistence.*;
 import lombok.*;
 import org.example.medicaldiagnosisapi.enums.PatientBiologicalSex;
 

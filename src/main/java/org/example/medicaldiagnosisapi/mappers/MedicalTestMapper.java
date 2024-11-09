@@ -1,7 +1,8 @@
 package org.example.medicaldiagnosisapi.mappers;
 
 import jakarta.annotation.PostConstruct;
-import org.example.medicaldiagnosisapi.dtos.CreateAppointmentRequest;
+import org.example.medicaldiagnosisapi.dtos.requests.CreateAppointmentRequest;
+import org.example.medicaldiagnosisapi.dtos.responses.MedicalTestResponse;
 import org.example.medicaldiagnosisapi.models.MedicalTest;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -19,6 +20,9 @@ public class MedicalTestMapper {
 
   public MedicalTest getMedicalTestFromCreateAppointmentRequest(CreateAppointmentRequest createAppointmentRequest){
     return modelMapper.map(createAppointmentRequest, MedicalTest.class);
+  }
+  public MedicalTestResponse getMedicalTestResponseFromMedicalTest(MedicalTest medicalTest){
+    return modelMapper.map(medicalTest, MedicalTestResponse.class);
   }
 
   @PostConstruct

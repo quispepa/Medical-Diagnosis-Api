@@ -1,5 +1,7 @@
 package org.example.medicaldiagnosisapi.services;
 
+import org.example.medicaldiagnosisapi.dtos.responses.MedicalRecordResponse;
+import org.example.medicaldiagnosisapi.mappers.MedicalRecordMapper;
 import org.example.medicaldiagnosisapi.models.MedicalRecord;
 import org.example.medicaldiagnosisapi.models.Patient;
 import org.example.medicaldiagnosisapi.repositories.MedicalRedordRepository;
@@ -11,10 +13,12 @@ import java.util.Optional;
 @Service
 public class MedicalRecordService {
   private final MedicalRedordRepository medicalRedordRepository;
+  private final MedicalRecordMapper medicalRecordMapper;
 
   @Autowired
-  public MedicalRecordService(MedicalRedordRepository medicalRedordRepository) {
+  public MedicalRecordService(MedicalRedordRepository medicalRedordRepository, MedicalRecordMapper medicalRecordMapper) {
     this.medicalRedordRepository = medicalRedordRepository;
+    this.medicalRecordMapper = medicalRecordMapper;
   }
   //Only services
   public Optional<MedicalRecord> getMedicalRecordEntityById(Long id){
@@ -29,5 +33,10 @@ public class MedicalRecordService {
    */
   public MedicalRecord getNewMedicalRecordEntityOfNewPatient(Patient newPatient) {
     return new MedicalRecord(newPatient);
+  }
+
+  public Optional<MedicalRecordResponse> getMedicalRecord(Long id){
+    Optional<MedicalRecord> optionalMedicalRecord = medicalRedordRepository.findById(id);
+    return optionalMedicalRecord.map(medicalRecordMapper::getMedicalRecordResponseFromMedicalRecord);
   }
 }

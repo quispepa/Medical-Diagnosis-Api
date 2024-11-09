@@ -1,8 +1,8 @@
 package org.example.medicaldiagnosisapi.services;
 
-import org.example.medicaldiagnosisapi.dtos.AppointmentResponse;
-import org.example.medicaldiagnosisapi.dtos.CreateAppointmentRequest;
-import org.example.medicaldiagnosisapi.dtos.UpdateAppointmentDateAndTimeRequest;
+import org.example.medicaldiagnosisapi.dtos.responses.AppointmentResponse;
+import org.example.medicaldiagnosisapi.dtos.requests.CreateAppointmentRequest;
+import org.example.medicaldiagnosisapi.dtos.requests.UpdateAppointmentDateAndTimeRequest;
 import org.example.medicaldiagnosisapi.enums.AppointmentStatus;
 import org.example.medicaldiagnosisapi.enums.AppointmentType;
 import org.example.medicaldiagnosisapi.enums.MedicalTestStatus;
@@ -48,7 +48,6 @@ public class AppointmentService {
   public List<AppointmentResponse> getAllAppointments() {
     return appoinmentMapper.getAppointmentResponseListFromAppointmentList(appointmentRepository.findAll());
   }
-
   public Optional<AppointmentResponse> createAppointment(CreateAppointmentRequest createAppointmentRequest) {
     Appointment newAppointment = appoinmentMapper.getAppointmentFromCreateAppointmentRequest(createAppointmentRequest);
     Patient patientFound = patientService.getPatientEntity(createAppointmentRequest.getPatientId()).orElse(null);
@@ -59,22 +58,39 @@ public class AppointmentService {
       newAppointment.setPatient(patientFound);
       newAppointment.setDoctor(doctorFound);
       newAppointment = appointmentRepository.save(newAppointment);
-      if (newAppointment.getAppointmentType().equals(AppointmentType.WITH_DOCTOR)){
-        Optional<Diagnosis> newDiagnosis = getNewDiagnosis(newAppointment);
-        if (newDiagnosis.isEmpty()) return Optional.empty();//Not found
-      } else if (newAppointment.getAppointmentType().equals(AppointmentType.TO_MEDICAL_TEST)) {
-        if (createAppointmentRequest.getMedicalTestType() == null) return Optional.empty(); //Not found
-        Diagnosis newDiagnosis = getNewDiagnosis(newAppointment).orElse(null);
-        if (newDiagnosis == null) return Optional.empty();//Not found
-        newMedicalTest(newDiagnosis, newAppointment, createAppointmentRequest);
-      }else {
-        return Optional.empty();//Not found
-      }
-      return Optional.of(appoinmentMapper.getAppointmentResponseFromAppointment(newAppointment));
+      return handleAppointmentType(newAppointment, createAppointmentRequest);
     }
   }
 
+  public Optional<AppointmentResponse> deleteAppointment(Long id){
+    Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
+    return optionalAppointment.map(appointment -> {
+      appointment.setAppointmentStatus(AppointmentStatus.CANCELED);
+      return appointmentRepository.save(appointment);
+    }).map(appoinmentMapper::getAppointmentResponseFromAppointment);
+  }
 
+  public Optional<AppointmentResponse> handleAppointmentType(Appointment appointment, CreateAppointmentRequest createAppointmentRequest){
+    if (appointment.getAppointmentType().equals(AppointmentType.WITH_DOCTOR)){
+      Optional<Diagnosis> newDiagnosis = getNewDiagnosis(appointment);
+      if (newDiagnosis.isEmpty()) return Optional.empty();//Not found
+    } else if (appointment.getAppointmentType().equals(AppointmentType.TO_MEDICAL_TEST)) {
+      if (createAppointmentRequest.getMedicalTestType() == null) return Optional.empty(); //Not found
+      Optional<Diagnosis> pendingResultsDiagnosisExists = diagnosisService.pendingResultsDiagnosisExists(appointment.getPatient().getMedicalRecord());
+      if (pendingResultsDiagnosisExists.isPresent()){
+        createMedicalTest(pendingResultsDiagnosisExists.get(), appointment, createAppointmentRequest);
+      }else {
+        Diagnosis newDiagnosis = getNewDiagnosis(appointment).orElse(null);
+        if (newDiagnosis == null) return Optional.empty();//Not found
+        createMedicalTest(newDiagnosis, appointment, createAppointmentRequest);
+      }
+    }else {
+      return Optional.empty();//Not found
+    }
+    return Optional.of(appoinmentMapper.getAppointmentResponseFromAppointment(appointment));
+  }
+
+  //Only services
   public Optional<Diagnosis> getNewDiagnosis(Appointment newAppointment){
     Diagnosis newDiagnosis = newAppointment.getAppointmentType().equals(AppointmentType.WITH_DOCTOR) ?
             diagnosisService.getNewDiagnosisOfNewDoctorAppointment() :
@@ -86,7 +102,8 @@ public class AppointmentService {
     return Optional.of(diagnosisService.saveDiagnosisEntity(newDiagnosis));
   }
 
-  public void newMedicalTest(Diagnosis newDiagnosis, Appointment newAppointment, CreateAppointmentRequest createAppointmentRequest) {
+  //Only services
+  public void createMedicalTest(Diagnosis newDiagnosis, Appointment newAppointment, CreateAppointmentRequest createAppointmentRequest) {
     MedicalTest newMedicalTest = medicalTestMapper.getMedicalTestFromCreateAppointmentRequest(createAppointmentRequest);
     newMedicalTest.setMedicalTestStatus(MedicalTestStatus.SCHEDULED);
     newMedicalTest.setAppointment(newAppointment);
@@ -101,6 +118,11 @@ public class AppointmentService {
       appointment.setAppointmentStatus(AppointmentStatus.RESCHEDULED);
       return appoinmentMapper.getAppointmentResponseFromAppointment(appointmentRepository.save(appointment));
     });
+  }
+
+  //Only services
+  public Diagnosis getPendingResultsDiagnosis(){
+    return null;
   }
 
 }

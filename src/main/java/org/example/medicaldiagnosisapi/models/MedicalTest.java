@@ -2,10 +2,7 @@ package org.example.medicaldiagnosisapi.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.example.medicaldiagnosisapi.enums.MedicalTestStatus;
 import org.example.medicaldiagnosisapi.enums.MedicalTestType;
 
@@ -15,6 +12,7 @@ import org.example.medicaldiagnosisapi.enums.MedicalTestType;
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 public class MedicalTest {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

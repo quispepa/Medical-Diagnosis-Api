@@ -2,10 +2,7 @@ package org.example.medicaldiagnosisapi.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.example.medicaldiagnosisapi.enums.PatientBiologicalSex;
 
 import java.time.LocalDate;
@@ -17,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 public class Patient {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,4 +1,4 @@
-package org.example.medicaldiagnosisapi.dtos;
+package org.example.medicaldiagnosisapi.dtos.requests;
 
 
 import jakarta.validation.constraints.FutureOrPresent;

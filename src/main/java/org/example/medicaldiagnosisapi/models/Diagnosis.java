@@ -3,10 +3,7 @@ package org.example.medicaldiagnosisapi.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.example.medicaldiagnosisapi.enums.DiagnosisTreatmentStatus;
 
 import java.time.LocalDate;
@@ -18,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 public class Diagnosis {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,4 +64,5 @@ public class Diagnosis {
   public Diagnosis(DiagnosisTreatmentStatus diagnosisTreatmentStatus) {
     this.diagnosisTreatmentStatus = diagnosisTreatmentStatus;
   }
+
 }

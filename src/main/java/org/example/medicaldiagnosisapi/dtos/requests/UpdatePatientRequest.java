@@ -1,7 +1,6 @@
-package org.example.medicaldiagnosisapi.dtos;
+package org.example.medicaldiagnosisapi.dtos.requests;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,15 +9,12 @@ import org.example.medicaldiagnosisapi.enums.PatientBiologicalSex;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreatePatientRequest {
-  @NotBlank
-  private String patientName;
-  @NotNull
+@Setter
+@Getter
+public class UpdatePatientRequest {
+  @Past
   private LocalDate patientDayOfBirth;
-  @NotNull
   private PatientBiologicalSex patientBiologicalSex;
 }

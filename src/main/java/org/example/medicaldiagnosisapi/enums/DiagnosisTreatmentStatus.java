@@ -1,5 +1,8 @@
 package org.example.medicaldiagnosisapi.enums;
 
+import lombok.ToString;
+
+@ToString
 public enum DiagnosisTreatmentStatus {
   COMPLETED,
   PENDING_TEST_RESULTS,

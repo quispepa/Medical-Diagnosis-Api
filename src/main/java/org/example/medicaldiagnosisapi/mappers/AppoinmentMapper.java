@@ -1,8 +1,8 @@
 package org.example.medicaldiagnosisapi.mappers;
 
 import jakarta.annotation.PostConstruct;
-import org.example.medicaldiagnosisapi.dtos.AppointmentResponse;
-import org.example.medicaldiagnosisapi.dtos.CreateAppointmentRequest;
+import org.example.medicaldiagnosisapi.dtos.responses.AppointmentResponse;
+import org.example.medicaldiagnosisapi.dtos.requests.CreateAppointmentRequest;
 import org.example.medicaldiagnosisapi.models.Appointment;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
